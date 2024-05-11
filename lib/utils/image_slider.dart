@@ -33,7 +33,7 @@ class _ImageSliderState extends State<ImageSlider> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(24.0),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
@@ -70,7 +70,7 @@ class _ImageSliderState extends State<ImageSlider> {
                         child: GestureDetector(
                           onTap: () {
                             _pageController.animateToPage(index,
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.easeIn);
                           },
                           child: CircleAvatar(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tuts/utils/bottom_navbar.dart';
 import 'package:tuts/utils/image_slider.dart';
+import 'package:tuts/utils/movie_slides.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -10,6 +12,19 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final List<String> filters = const ["New", "Trending", "Funny", "Drama"];
+  final List<String> locations = const [
+    "Special Theater",
+    "Group Buy",
+    "Family Package",
+    "Personal"
+  ];
+  final List<IconData> icons = const [
+    Icons.theaters,
+    Icons.group,
+    Icons.family_restroom,
+    Icons.person
+  ];
+
   late String selectedFilter;
 
   @override
@@ -21,6 +36,9 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(
+        onTabChange: (index) {},
+      ),
       appBar: AppBar(
         title: Row(
           children: [
@@ -63,116 +81,185 @@ class _HomepageState extends State<Homepage> {
           )
         ],
       ),
-      body: Container(
-        color: const Color.fromRGBO(245, 247, 249, 1),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SingleChildScrollView(
-                child: SizedBox(
-                  height: 60,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: filters.length,
-                    itemBuilder: (context, index) {
-                      final filter = filters[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedFilter = filter;
-                            });
-                          },
-                          child: Chip(
-                            backgroundColor: selectedFilter == filter
-                                ? Colors.red[700]
-                                : Colors.white,
-                            side: const BorderSide(color: Colors.white),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            label: Text(
-                              filter,
-                              style: TextStyle(
-                                color: selectedFilter == filter
-                                    ? Colors.white
-                                    : Colors.black,
+      body: SingleChildScrollView(
+        child: Container(
+          color: const Color.fromRGBO(245, 247, 249, 1),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SingleChildScrollView(
+                  child: SizedBox(
+                    height: 60,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: filters.length,
+                      itemBuilder: (context, index) {
+                        final filter = filters[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedFilter = filter;
+                              });
+                            },
+                            child: Chip(
+                              backgroundColor: selectedFilter == filter
+                                  ? Colors.red[700]
+                                  : Colors.white,
+                              side: const BorderSide(color: Colors.white),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              label: Text(
+                                filter,
+                                style: TextStyle(
+                                  color: selectedFilter == filter
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-                      child: TextField(
-                        style: const TextStyle(
-                            color: Colors.black), // Change text color
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white, // Fill color
-                          prefixIcon: const Icon(
-                            Icons.search,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
+                        child: TextField(
+                          style: const TextStyle(
+                              color: Colors.black), // Change text color
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white, // Fill color
+                            prefixIcon: const Icon(
+                              Icons.search,
+                            ),
+                            suffixIcon: const Icon(Icons.sort),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 20), // Adjust content padding
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide.none, // No border when not focused
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide.none, // No border when not focused
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            hintStyle: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey, // Change hint color
+                            ),
+                            hintText: "Search...",
                           ),
-                          suffixIcon: const Icon(Icons.sort),
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12,
-                              horizontal: 20), // Adjust content padding
-                          border: OutlineInputBorder(
-                            borderSide:
-                                BorderSide.none, // No border when not focused
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide.none, // No border when not focused
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey, // Change hint color
-                          ),
-                          hintText: "Search...",
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 230, // Adjust height as needed
+                  child: ImageSlider(),
+                ),
 
-               SizedBox(
-                height: 250, // Adjust height as needed
-                child: ImageSlider(),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(16.0),
-              //   child: Container(
-              //     decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(30),
-              //     ),
-              //     child: ClipRRect(
-              //       borderRadius: BorderRadius.circular(20),
-              //       child: Image.asset("lib/assets/gt.jpg"),
-              //     ),
-              //   ),
-              // )
-            ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: List.generate(locations.length, (index) {
+                      final location = locations[index];
+                      final icon = icons[index];
+                      final color = _getColorForIndex(index);
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 15, 10, 4),
+                        child: Chip(
+                          backgroundColor: color,
+                          side: const BorderSide(color: Colors.white),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          label: Row(
+                            children: [
+                              Icon(
+                                icon,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                location,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 4,
+                ),
+
+                //Popular tag
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Popular ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      Text("More",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red[300])),
+                    ],
+                  ),
+                ),
+
+                const MovieSlides(),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Color _getColorForIndex(int index) {
+    switch (index) {
+      case 0:
+        return Colors.purple; // Special Theater
+      case 1:
+        return Colors.grey; // Group Buy
+      case 2:
+        return Colors.yellow; // Family Package
+      case 3:
+        return Colors.teal; // Personal
+      default:
+        return Colors.grey;
+    }
   }
 }
