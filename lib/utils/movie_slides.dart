@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tuts/models/movie.dart';
+import 'package:tuts/pages/movie_page.dart';
 
 class MovieSlides extends StatefulWidget {
   const MovieSlides({super.key});
@@ -37,32 +38,42 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Stack(
-          children: [
-            Image.asset(
-              movie.imagePath,
-              width: 120,
-              height: 140,
-              fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MoviePage(movie: movie),
             ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.center,
-                child: IconButton(
-                  onPressed: () {
-                    // Implement play functionality
-                  },
-                  icon: const Icon(
-                    Icons.play_circle_fill,
-                    color: Colors.yellow,
-                    size: 40,
+          );
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Stack(
+            children: [
+              Image.asset(
+                movie.imagePath,
+                width: 120,
+                height: 140,
+                fit: BoxFit.cover,
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: IconButton(
+                    onPressed: () {
+                      // Implement play functionality
+                    },
+                    icon: const Icon(
+                      Icons.play_circle_fill,
+                      color: Colors.yellow,
+                      size: 40,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -131,7 +131,7 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
+                        padding: const EdgeInsets.fromLTRB(24, 6, 24, 0),
                         child: TextField(
                           style: const TextStyle(
                               color: Colors.black), // Change text color
