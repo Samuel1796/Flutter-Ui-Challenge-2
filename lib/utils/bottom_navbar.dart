@@ -25,25 +25,25 @@ class BottomNavBar extends StatelessWidget {
             icon: Icons.home,
             text: "Home",
             padding: EdgeInsets.symmetric(
-                horizontal: 10, vertical: 10), // Adjust padding
+                horizontal: 14, vertical: 13), // Adjust padding
           ),
           GButton(
             icon: Icons.auto_graph,
             text: "Movies",
             padding: EdgeInsets.symmetric(
-                horizontal: 10, vertical: 10), // Adjust padding
+                horizontal: 14, vertical: 14), // Adjust padding
           ),
           GButton(
             icon: Icons.theaters,
             text: "Theater",
             padding: EdgeInsets.symmetric(
-                horizontal: 10, vertical: 10), // Adjust padding
+                horizontal: 14, vertical: 14), // Adjust padding
           ),
           GButton(
             icon: Icons.person,
             text: "Profile",
             padding: EdgeInsets.symmetric(
-                horizontal: 10, vertical: 10), // Adjust padding
+                horizontal: 14, vertical: 14), // Adjust padding
           ),
         ],
       ),

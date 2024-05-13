@@ -17,8 +17,8 @@ class MoviePage extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30.0),
-                    bottomRight: Radius.circular(30.0),
+                    bottomLeft: Radius.circular(35.0),
+                    bottomRight: Radius.circular(35.0),
                   ),
                   child: Image.asset(
                     movie.imagePath,
@@ -77,7 +77,7 @@ class MoviePage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text(". ${movie.year}"),
+                              Text(" ${movie.year}"),
                               Expanded(
                                 child: Text(
                                   ". ${movie.genre}",
