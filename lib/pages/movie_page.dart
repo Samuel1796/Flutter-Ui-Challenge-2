@@ -55,9 +55,11 @@ class MoviePage extends StatelessWidget {
                               ),
                               const CircleAvatar(
                                 backgroundColor: Colors.red,
+                                radius: 13,
                                 child: Icon(
                                   Icons.favorite,
                                   color: Colors.white,
+                                  size: 17,
                                 ),
                               ),
                             ],
